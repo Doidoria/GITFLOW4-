@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <!--장바구니-->
+
 <head>
     <meta charset="UTF-8">
     <title>장바구니</title>
@@ -184,7 +185,7 @@
         .btn-group>button:nth-of-type(1) {
             background: gray;
             color: white;
-            border:none;
+            border: none;
         }
 
         .total {
@@ -226,22 +227,107 @@
             background: rgb(171, 171, 171);
         }
 
-        .another-order-buttons{
-            
+
+        .npay-divider{
+            width: 30%;
+            height: 1px;
+            background-color: black;
+            margin: 10px auto 10px auto;
         }
 
-        .naver {
-            background-color: #00c73c;
-            color: white;
-            border:none;
-            border-radius: 3px;
+        .kakaopay-divider{
+            width:30%;
+            height: 1px;
+            background-color: black;
+            margin:1px auto 10px auto;
         }
 
-        .kakao {
-            background-color: #ffeb00;
-            color: #333;
-            border:none;
-            border-radius:3px;
+        .npay-table,
+        .kakaopay-table {
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+
+        .npay-table td,
+        .kakaopay-table td {
+            padding: 10px;
+            vertical-align: middle;
+            width: 30%;
+        }
+
+        .npay-table tr,
+        .kakaopay-table tr {
+            border-top: none;
+        }
+
+        .npay-left,
+        .kakaopay-left {
+            width: 70%;
+            padding-right: 10px;
+            text-align: right;
+        }
+
+        .npay-right,
+        .kakaopay-right {
+            width: 30%;
+            text-align: right;
+        }
+
+
+        .npay-label {
+            color: #03c75a;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .npay-desc {
+            color: #444;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        .npay-button {
+            margin-left: 0;
+            background-color: #03c75a;
+            color: black;
+            font-weight: bold;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .kakaopay-button {
+
+            margin-left: 0;
+            background-color: #ffd773;
+            color: black;
+            font-weight: bold;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+
+        }
+
+        .npay-button .icon {
+            background: white;
+            border-radius: 50%;
+            font-weight: bold;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     </style>
 </head>
@@ -345,12 +431,42 @@
             <button>전체상품주문</button>
             <button>선택상품주문</button>
         </div>
+        <div class="npay-divider"></div>
+        <table class="npay-table">
+            <tr>
+                <td class="npay-left">
+                    <div class="npay-label">NAVER</div>
+                    <div class="npay-desc">
+                        네이버ID로 간편구매<br>
+                        네이버페이
+                    </div>
+                </td>
+                <td class="npay-right">
+                    <button class="npay-button">
+                        <span class="icon">N</span>
+                        pay 구매
+                    </button>
+                </td>
+            </tr>
+        </table>
+        <div class="kakaopay-divider"></div>
+        <table class="kakaopay-table">
+            <tr>
+                <td class="kakaopay-left">
+                    <div class="kakaopay-label">kakao</div>
+                    <div class="npay-desc">
+                        <strong>톡 체크아웃</strong>
+                    </div>
+                </td>
+                <td class="kakaopay-right">
+                    <button class="kakaopay-button">
+                        <span class="kakao">💬</span>
+                        간편구매
+                    </button>
+                </td>
+            </tr>
+        </table>
 
-
-        <div class="another-order-buttons">
-            <button class="naver">Npay</button>
-            <button class="kakao">KakaoPay</button>
-        </div>
     </main>
 
     <footer>푸터 영역</footer>
