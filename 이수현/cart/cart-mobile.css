@@ -1,0 +1,28 @@
+/* header */
+@media (max-width:910px){
+    .top-header{
+        min-width: 910px;
+    }
+    .top-header+nav{
+        min-width:910px;
+    }
+}
+
+/* footer */
+@media (max-width:1540px){
+    footer{
+        height: 100%;
+        display:grid;
+        padding: 30px 50px;
+        gap:30px;
+    }
+    .footinfo{
+        width:100%;
+    }
+}
+
+@media (max-width:1100px){
+    .bottom-footer{
+        min-width:1100px;
+    }
+}
