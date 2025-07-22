@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ko">
+<!--장바구니-->
+
+<head>
+    <meta charset="UTF-8">
+    <title>장바구니</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #fff;
+            color: #333;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        header,
+        footer {
+            background-color: #f5f5f5;
+            height: 15vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+            font-size: 14px;
+
+        }
+
+        main {
+            padding: 100px;
+            position: relative;
+        }
+
+        h3 {
+            font-size: small;
+            text-align: right;
+            position: absolute;
+            right: 30px;
+            top: 5px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .tab-menu {
+            display: flex;
+            border: 1px solid #ccc;
+            border-bottom: none;
+            width: 50vw;
+        }
+
+        .tab-menu div {
+            flex: 1;
+            text-align: center;
+            padding: 12px;
+            cursor: pointer;
+        }
+
+        .tab-menu div:first-child {
+            border-right: 1px solid #e4e2e8;
+            border-bottom: none;
+            background-color: #f8f8f8;
+        }
+
+        .main-contents th {
+            background-color: #f8f8f8;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+
+        th,
+        td {
+            vertical-align: middle;
+            padding: 12px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        tr {
+            border-top: 1px solid #ccc;
+        }
+
+
+        .product-info {
+            line-height: 1.5;
+        }
+
+        .product_img {
+            width: 80px;
+            height: 96px;
+        }
+
+        .image-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+        }
+
+        .image-wrapper img {
+            width: 60px;
+            height: auto;
+            display: block;
+        }
+
+        .quantity {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        input[type="number"] {
+            width: 50px;
+            height: 40px;
+            text-align: center;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+
+        .change-quantity {
+            border: 1px solid #ccc;
+            background-color: white;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+
+        .main-contents tbody tr td:first-child {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-left: 0;
+        }
+
+
+
+        .main-contents tr td:nth-child(1),
+        .main-contents tr th:nth-child(1) {
+            text-align: left;
+        }
+
+        .main-contents tfoot tr:nth-child(1) {
+            background-color: #f8f8f8;
+        }
+
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 50px;
+            font-size: 14px;
+
+        }
+
+        .btn-group>button {
+            font-size: 14px;
+        }
+
+        .btn-group>button:nth-of-type(1) {
+            background: gray;
+            color: white;
+            border: none;
+        }
+
+        .total {
+            margin-top: 100px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .total tbody tr td {
+            font-size: x-large
+        }
+
+        .total>tbody>tr>td:nth-child(3) {
+            color: rgb(173, 9, 9);
+        }
+
+        .pay-buttons,
+        .order-buttons,
+        .another-order-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .order-buttons button {
+            color: white;
+            padding: 10px;
+            font-size: medium;
+            border: none;
+            border-radius: 3px;
+
+        }
+
+        .order-buttons button:nth-child(1) {
+            background: gray;
+        }
+
+        .order-buttons button:nth-child(2) {
+            background: rgb(171, 171, 171);
+        }
+
+
+        .npay-divider{
+            width: 30%;
+            height: 1px;
+            background-color: black;
+            margin: 10px auto 10px auto;
+        }
+
+        .kakaopay-divider{
+            width:30%;
+            height: 1px;
+            background-color: black;
+            margin:1px auto 10px auto;
+        }
+
+        .npay-table,
+        .kakaopay-table {
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+
+        .npay-table td,
+        .kakaopay-table td {
+            padding: 10px;
+            vertical-align: middle;
+            width: 30%;
+        }
+
+        .npay-table tr,
+        .kakaopay-table tr {
+            border-top: none;
+        }
+
+        .npay-left,
+        .kakaopay-left {
+            width: 70%;
+            padding-right: 10px;
+            text-align: right;
+        }
+
+        .npay-right,
+        .kakaopay-right {
+            width: 30%;
+            text-align: right;
+        }
+
+
+        .npay-label {
+            color: #03c75a;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .npay-desc {
+            color: #444;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        .npay-button {
+            margin-left: 0;
+            background-color: #03c75a;
+            color: black;
+            font-weight: bold;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .kakaopay-button {
+
+            margin-left: 0;
+            background-color: #ffd773;
+            color: black;
+            font-weight: bold;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+
+        }
+
+        .npay-button .icon {
+            background: white;
+            border-radius: 50%;
+            font-weight: bold;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header>헤더 영역</header>
+
+    <main>
+        <h3>홈 > 장바구니</h3>
+        <h2>장바구니</h2>
+
+        <div class="tab-menu">
+            <div><strong>국내배송상품 (1)</strong></div>
+            <div>해외배송상품 (0)</div>
+        </div>
+
+        <table class="main-contents">
+            <thead>
+                <tr>
+                    <th>
+                        <div class="image-wrapper"><input type="checkbox"><span>이미지</span></div>
+                    </th>
+                    <th>상품정보</th>
+                    <th>수량</th>
+                    <th>상품금액</th>
+                    <th>할인금액</th>
+                    <th>적립금</th>
+                    <th>배송구분</th>
+                    <th>배송비</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="image-wrapper">
+                            <input type="checkbox">
+                            <a href="/product/detail.html?product_no=1446&amp;cate_no=1">
+                                <img src="//www.undernine.co.kr/web/product/tiny/202504/6240809ff2ee4c7f5083c8370a7bdbfd.webp"
+                                    alt="상품 이미지">
+                            </a>
+                        </div>
+                    </td>
+                    <td>
+                        <ul class="product-info">
+                            <li><strong>[남여공용] 프렌드 밴딩 카고 버뮤다 팬츠 (5 color)</strong></li>
+                            <li>[옵션: 그레이/FREE]</li>
+                            <li class="displaynone">(1개)</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <div class="quantity">
+                            <input type="number" value="1" min="1" />
+                            <button class="change-quantity">변경</button>
+                        </div>
+                    </td>
+                    <td>37,000원</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>기본배송</td>
+                    <td>무료</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="10">[기본배송]</td>
+                </tr>
+                <tr>
+                    <td colspan="10">할인 적용 금액은 주문서작성의 결제예정금액에서 확인 가능합니다.</td>
+                </tr>
+                <tr>
+
+                </tr>
+            </tfoot>
+        </table>
+
+        <div class="btn-group">
+            <strong>선택상품을</strong>
+            <button>X 삭제하기</button>
+            <button>해외배송상품 장바구니로 이동</button>
+        </div>
+
+        <table class="total">
+            <thead>
+                <tr>
+                    <th><strong>총 상품금액</strong></th>
+                    <th><strong>총 배송비</strong></th>
+                    <th><strong>결제예정금액</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>37000</strong>원</td>
+                    <td><strong>+0</strong>원</td>
+                    <td><strong>=37000</strong>원</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="order-buttons">
+            <button>전체상품주문</button>
+            <button>선택상품주문</button>
+        </div>
+        <div class="npay-divider"></div>
+        <table class="npay-table">
+            <tr>
+                <td class="npay-left">
+                    <div class="npay-label">NAVER</div>
+                    <div class="npay-desc">
+                        네이버ID로 간편구매<br>
+                        네이버페이
+                    </div>
+                </td>
+                <td class="npay-right">
+                    <button class="npay-button">
+                        <span class="icon">N</span>
+                        pay 구매
+                    </button>
+                </td>
+            </tr>
+        </table>
+        <div class="kakaopay-divider"></div>
+        <table class="kakaopay-table">
+            <tr>
+                <td class="kakaopay-left">
+                    <div class="kakaopay-label">kakao</div>
+                    <div class="npay-desc">
+                        <strong>톡 체크아웃</strong>
+                    </div>
+                </td>
+                <td class="kakaopay-right">
+                    <button class="kakaopay-button">
+                        <span class="kakao">💬</span>
+                        간편구매
+                    </button>
+                </td>
+            </tr>
+        </table>
+
+    </main>
+
+    <footer>푸터 영역</footer>
+</body>
+
+</html>
