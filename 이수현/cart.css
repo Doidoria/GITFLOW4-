@@ -1,5 +1,5 @@
 main {
-    padding: 100px;
+    padding: 100px 200px;
     position: relative;
 }
 
@@ -20,7 +20,7 @@ h2 {
     display: flex;
     border: 1px solid #ccc;
     border-bottom: none;
-    width: 50vw;
+    width: 500px;
 }
 
 .tab-menu div {
@@ -41,7 +41,7 @@ h2 {
 }
 
 table {
-    width: 100%;
+    width:100%;
     border-collapse: collapse;
     margin-bottom: 30px;
 }
@@ -158,6 +158,7 @@ input[type="number"] {
     margin-top: 60px;
     border-bottom: 1px solid #ccc;
     margin-bottom: 20px;
+
 }
 
 .price>td {
